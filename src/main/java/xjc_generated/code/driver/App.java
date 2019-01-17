@@ -1,8 +1,6 @@
 package xjc_generated.code.driver;
 
-import generated.Element;
 import generated.MLIspec;
-import generated.ObjectFactory;
 import java.io.File;
 import java.net.URI;
 import java.util.Properties;
@@ -24,7 +22,12 @@ public class App {
         URI uri = new URI(properties.getProperty("output"));
         File file = new File(uri);
 
-        JAXBContext jaxbContext = JAXBContext.newInstance();
+        MLIspec mliSpec = new MLIspec();
+        JAXBContext jaxbContext = JAXBContext.newInstance(MLIspec.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        jaxbMarshaller.marshal(mliSpec, file);
+        jaxbMarshaller.marshal(mliSpec, System.out);
 
     }
 
