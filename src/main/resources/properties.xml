@@ -2,16 +2,7 @@
 <properties>
     <comment>jaxb</comment>
     <entry key="basex_path">file:/home/thufir/.basex/</entry>
-    <entry key="xml">file:/home/thufir/jaxb/xalan/ship/shiporder.xml</entry>
-    <entry key="xsd">file:/home/thufir/jaxb/xalan/ship/shiporder.xsd</entry>
-    <entry key="xsl">file:/home/thufir/jaxb/xalan/ship/identity.xsl</entry>
     <entry key="output">file:/home/thufir/xml/output.xml</entry>
-    <entry key="url">http://books.toscrape.com/</entry>
-    <entry key="note">https://www.w3schools.com/xml/note.xml</entry>
-    <entry key="kingfisher">http://www.kingfisher.org/</entry>
-    <entry key="books">http://books.toscrape.com/</entry>
-    <entry key="noagenda">http://thufir.github.io/noagenda/</entry>
-    <entry key="mobi">https://ebook.online-convert.com/convert-to-mobi</entry>
-    <entry key="note_db">note</entry>
+    <entry key="mli_input">file:/home/thufir/xml/abhinash/foo.xml</entry>
 </properties>
 
