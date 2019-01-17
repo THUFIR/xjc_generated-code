@@ -24,22 +24,7 @@ public class App {
         URI uri = new URI(properties.getProperty("output"));
         File file = new File(uri);
 
-        ObjectFactory objectFactory = new ObjectFactory();
-        MLIspec mliSpec = objectFactory.createMLIspec();
-        mliSpec.setDescription("new mli");
-        Element value = new Element();
-        value.setId("some other thing");
-        mliSpec.setElement(value);
-        mliSpec.setId("identification string");
-        mliSpec.setTypename("newType");
-
-        LOG.info(mliSpec.toString());
-
         JAXBContext jaxbContext = JAXBContext.newInstance();
-        Marshaller marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-        marshaller.marshal(mliSpec, file);
 
     }
 
