@@ -15,39 +15,42 @@ public class App {
 
     private static final Logger LOG = Logger.getLogger(App.class.getName());
     private Properties properties = new Properties();
-    private MLIspec mliSpec = null;
+    //  private MLIspec mliSpec = null;
 
     public static void main(String[] args) throws Exception {
-        new App().unmarshall();
+        new App().unmarshallThenMarshall();
     }
 
-    private void unmarsklhall() throws Exception {
-    }
-
-    private MLIspec unmarshall() throws Exception {
+    private void unmarshallThenMarshall() throws Exception {
         properties.loadFromXML(App.class.getResourceAsStream("/properties.xml"));
-        URI uri = new URI(properties.getProperty("mli_input"));
-        File file = new File(uri);
+
+        URI inputURI = new URI(properties.getProperty("mli_input"));
+        File inputFile = new File(inputURI);
+        MLIspec mliSpec = unmarshallMLI(inputFile);
+
+        URI outputURI = new URI(properties.getProperty("output"));
+        File outputFile = new File(outputURI);
+        marshall(mliSpec, outputFile);
+    }
+
+    private MLIspec unmarshallMLI(File file) throws Exception {
 
         FileInputStream fileInputStream = new FileInputStream(file);
         StreamSource streamSource = new StreamSource();
         streamSource.setInputStream(fileInputStream);
 
-        mliSpec = JAXB.unmarshal(streamSource, MLIspec.class);
+        MLIspec mliSpec = JAXB.unmarshal(streamSource, MLIspec.class);
         LOG.info(mliSpec.toString());
         return mliSpec;
     }
 
-    private void marshall() throws Exception {
-        properties.loadFromXML(App.class.getResourceAsStream("/properties.xml"));
-        URI uri = new URI(properties.getProperty("output"));
-        File file = new File(uri);
+    private void marshall(generated.MLIspec mliSpec, File file) throws Exception {
 
         JAXBContext jaxbContext = JAXBContext.newInstance(MLIspec.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         jaxbMarshaller.marshal(mliSpec, file);
-        jaxbMarshaller.marshal(mliSpec, System.out);
+    //    jaxbMarshaller.marshal(mliSpec, System.out);
 
     }
 
