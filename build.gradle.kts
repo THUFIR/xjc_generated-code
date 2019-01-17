@@ -39,7 +39,7 @@ dependencies {
 
 application {
     // Define the main class for the application
-    mainClassName = "xjc_generated.code.App"
+    mainClassName = "xjc_generated.code.driver.App"
 }
 
 val test by tasks.getting(Test::class) {
